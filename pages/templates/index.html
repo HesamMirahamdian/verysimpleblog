@@ -1,0 +1,62 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block main_content %}
+<div class="masonry-wrap">
+
+    <div class="masonry">
+
+        <div class="grid-sizer"></div>
+
+        <article class="masonry__brick entry format-quote animate-this">
+                
+            <div class="entry__thumb">
+                <blockquote>
+                    <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
+
+                    <cite>Dieter Rams</cite>
+                </blockquote>
+            </div>   
+
+        </article> <!-- end article -->
+
+        {% for post in posts %}
+        <article class="masonry__brick entry format-standard animate-this">
+                
+            <div class="entry__thumb">
+                <a href="{% url 'post' pk=post.pk %}" class="entry__thumb-link">
+                    <img src="{{post.image.url}}" 
+                            srcset="{{post.image.url}} 1x, {{post.image.url}} 2x" alt="">
+                </a>
+            </div>
+
+            <div class="entry__text">
+                <div class="entry__header">
+
+                    <h2 class="entry__title"><a href="{% url 'post' pk=post.pk %}">{{ post.title }}</a></h2>
+                    <div class="entry__meta">
+                        <span class="entry__meta-date">
+                            <a href="{% url 'post' pk=post.pk %}">{{post.created_at}}</a>
+                        </span>
+                    </div>
+                    
+                </div>
+                <div class="entry__excerpt">
+                    <p>
+                    {{post.description|truncatechars:80}}
+                    </p>
+                </div>
+            </div>
+
+        </article> <!-- end article -->
+        {% endfor %}
+        
+
+
+         
+</div> <!-- end masonry-wrap -->
+{% endblock main_content %}

@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    View Post
+{% endblock title %}
+
+{% block main_content %}
+<main class="row content__page">
+                
+    <article class="column large-full entry format-standard">
+
+        <div class="media-wrap entry__media">
+            <div class="entry__post-thumb">
+                <img src="{{post.image.url}}" 
+                     srcset="{{post.image.url}} 2000w, 
+                     {{post.image.url}} 1000w, 
+                     {{post.image.url}} 500w" sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+            </div>
+        </div>
+
+        <div class="content__page-header entry__header">
+            <h1 class="display-1 entry__title">
+            {{post.title}}
+            </h1>
+            <ul class="entry__header-meta">
+                <li class="author">By <a href="#0">{{post.author}}</a></li>
+                <li class="date">{{post.created_at}}</li>
+            </ul>
+        </div> <!-- end entry__header -->
+
+        <div class="entry__content">
+
+            <p class="lead drop-cap">
+            {{post.description|truncatechars:190}}
+            </p>
+
+            <p>
+            {{post.description}}
+            </p>
+
+            <p>
+            <img src="images/wheel-1000.jpg" 
+                 srcset="images/wheel-2000.jpg 2000w, 
+                         images/wheel-1000.jpg 1000w, 
+                         images/wheel-500.jpg 500w" 
+                         sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+            </p>
+
+        </div> <!-- end entry content -->
+
+    </article> <!-- end column large-full entry-->
+
+</main>
+{% endblock main_content %}
